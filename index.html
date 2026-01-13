@@ -1,1 +1,778 @@
-This is the index.
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Die Pickup Camper - Offroad Abenteuer & Reisen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --forest-green: #3d6359;
+            --light-green: #5a8174;
+            --copper: #d4914e;
+            --cream: #f2ebdb;
+            --dark-text: #2d3436;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.7;
+            color: var(--dark-text);
+            background: linear-gradient(to bottom, #e8f5e9 0%, #f5f5f5 100%);
+        }
+        
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--forest-green);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 20px;
+        }
+        
+        .logo-section { display: flex; align-items: center; gap: 1.5rem; }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid var(--forest-green);
+        }
+        
+        .brand h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            color: var(--forest-green);
+        }
+        
+        .brand .tagline {
+            font-size: 0.9rem;
+            color: var(--light-green);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        nav a {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--forest-green);
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 0.5rem;
+        }
+        
+        .hero {
+            margin: 3rem 0;
+            position: relative;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .hero-image { width: 100%; height: 100%; object-fit: cover; }
+        
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+            padding: 3rem;
+            color: white;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: var(--copper);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            color: var(--forest-green);
+            margin: 4rem 0 2rem;
+            text-align: center;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+        
+        .article-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+        
+        .article-image { width: 100%; height: 240px; object-fit: cover; }
+        
+        .article-content { padding: 1.8rem; }
+        
+        .article-meta {
+            font-size: 0.85rem;
+            color: var(--light-green);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .article-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            color: var(--forest-green);
+            margin-bottom: 1rem;
+        }
+        
+        .read-more {
+            color: var(--copper);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .article-full {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+        
+        .article-full.active { display: block; }
+        
+        .article-full-header {
+            position: relative;
+            height: 400px;
+        }
+        
+        .article-full-image { width: 100%; height: 100%; object-fit: cover; }
+        
+        .article-full-title-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+            padding: 3rem;
+            color: white;
+        }
+        
+        .article-full-title-overlay h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+        }
+        
+        .article-full-content {
+            padding: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--forest-green);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            margin-bottom: 2rem;
+        }
+        
+        .article-full-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--forest-green);
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1rem;
+        }
+        
+        .article-full-content p {
+            margin-bottom: 1.3rem;
+            line-height: 1.8;
+        }
+        
+        .impressum {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+        }
+        
+        .impressum.active { display: block; }
+        
+        .impressum h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--forest-green);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .impressum h3 {
+            color: var(--light-green);
+            font-size: 1.5rem;
+            margin: 2.5rem 0 1rem;
+        }
+        
+        footer {
+            background: var(--forest-green);
+            color: var(--cream);
+            padding: 3rem 0;
+            margin-top: 5rem;
+            text-align: center;
+        }
+        
+        footer a {
+            color: var(--copper);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <svg class="logo" viewBox="0 0 200 200">
+                    <circle cx="100" cy="100" r="90" fill="#3d6359"/>
+                    <circle cx="100" cy="100" r="75" fill="#5a8174"/>
+                    <path d="M70 110 L130 110 L130 90 L110 70 L90 70 L70 90 Z" fill="#d4914e"/>
+                </svg>
+                <div class="brand">
+                    <h1>Die Pickup Camper</h1>
+                    <span class="tagline">Offroad Reisen & Abenteuer</span>
+                </div>
+            </div>
+            <nav>
+                <a href="#" onclick="showHome(); return false;">Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="home-view">
+            <div class="hero" onclick="showArticle(1)">
+                <img src="/img/image-4.png" alt="Wintercamping" class="hero-image">
+                <div class="hero-overlay">
+                    <span class="hero-badge">🔥 Neuester Artikel</span>
+                    <h2>Wintercamping im Pickup</h2>
+                    <div class="article-meta">📅 15. Januar 2026 | ✍️ Dominik Bittl</div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Alle Artikel</h2>
+
+            <div class="blog-grid">
+                <div class="article-card" onclick="showArticle(2)">
+                    <img src="/img/image-3.png" alt="Offroad" class="article-image">
+                    <div class="article-content">
+                        <div class="article-meta">📅 28. Dezember 2025</div>
+                        <h3>Dorthin, wo andere umkehren</h3>
+                        <a href="#" class="read-more" onclick="showArticle(2); return false;">Weiterlesen →</a>
+                    </div>
+                </div>
+
+                <div class="article-card" onclick="showArticle(3)">
+                    <img src="/img/image-5.png" alt="Gebrauchtkauf" class="article-image">
+                    <div class="article-content">
+                        <div class="article-meta">📅 8. Dezember 2025</div>
+                        <h3>Gebraucht ins Abenteuer</h3>
+                        <a href="#" class="read-more" onclick="showArticle(3); return false;">Weiterlesen →</a>
+                    </div>
+                </div>
+
+                <div class="article-card" onclick="showArticle(4)">
+                    <img src="/img/image-2.png" alt="Fahrwerk" class="article-image">
+                    <div class="article-content">
+                        <div class="article-meta">📅 3. November 2025</div>
+                        <h3>Sicher unterwegs</h3>
+                        <a href="#" class="read-more" onclick="showArticle(4); return false;">Weiterlesen →</a>
+                    </div>
+                </div>
+
+                <div class="article-card" onclick="showArticle(5)">
+                    <img src="/img/image-1.png" alt="Kabinen" class="article-image">
+                    <div class="article-content">
+                        <div class="article-meta">📅 18. Oktober 2025</div>
+                        <h3>Absetzkabine vs. Festaufbau</h3>
+                        <a href="#" class="read-more" onclick="showArticle(5); return false;">Weiterlesen →</a>
+                    </div>
+                </div>
+
+                <div class="article-card" onclick="showArticle(6)">
+                    <img src="/img/image-0.png" alt="Freiheit" class="article-image">
+                    <div class="article-content">
+                        <div class="article-meta">📅 22. September 2025</div>
+                        <h3>Freiheit ohne Grenzen</h3>
+                        <a href="#" class="read-more" onclick="showArticle(6); return false;">Weiterlesen →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="article-1" class="article-full">
+            <div class="article-full-header">
+                <img src="/img/image-4.png" alt="Winter" class="article-full-image">
+                <div class="article-full-title-overlay">
+                    <h2>Wintercamping im Pickup: Der ultimative Guide gegen Kälte und Kondenswasser</h2>
+                </div>
+            </div>
+            <div class="article-full-content">
+                <a href="#" class="back-btn" onclick="showHome(); return false;">← Zurück</a>
+                
+                <p>Draußen herrschen minus 15 Grad, der Wind peitscht Schnee gegen die Kabinenwand, aber drinnen sitzt du im T-Shirt bei wohligen 22 Grad und kochst Kaffee. Wintercamping mit dem Pickup ist magisch – wenn man weiß, was man tut. Doch der kleine Raum birgt physikalische Tücken. Hier erfährst du, wie du deine Kabine winterfest machst, welche Heizung die richtige ist und wie du den Endgegner „Feuchtigkeit" besiegst.</p>
+
+                <p>Viele Camper motten ihr Fahrzeug im Oktober ein. Ein Fehler! Denn gerade im Winter spielen Pickup-Kabinen ihre Stärken aus. Während Wohnmobile auf verschneiten Passstraßen Ketten aufziehen müssen, schaltest du den 4x4 zu und fährst entspannt bis zum Liftparkplatz oder in den tief verschneiten Wald. Doch damit der Traum vom "Winter Wonderland" nicht zum Albtraum aus Eisblumen an der Innenwand und leeren Batterien wird, bedarf es spezieller Vorbereitung.</p>
+
+                <h3>1. Die Gretchenfrage: Hubdach oder Festwand?</h3>
+                <p>Grundsätzlich sind Hardwall-Kabinen (feste Wände aus Sandwich-Platten) im Winter im Vorteil. Sie isolieren hervorragend und halten die Wärme lange. Doch auch Besitzer von Pop-Up-Kabinen (mit aufstellbarem Stoffdach) müssen nicht frieren. Für fast alle Modelle gibt es sogenannte „Winter-Kits". Das sind isolierende Thermomatten, die von innen an den Zeltstoff geklettet werden.</p>
+
+                <p><strong>Wichtig:</strong> Ohne diese Zusatzisolierung wird es im Hubdach-Alkoven extrem ungemütlich, und die Heizung läuft permanent auf Volllast.</p>
+
+                <h3>2. Heizungssysteme: Gas vs. Diesel</h3>
+                <p>Im Pickup-Bereich duellieren sich zwei Systeme. Beide haben im Winter ihre Tücken.</p>
+
+                <p><strong>Die Gasheizung (z.B. Truma):</strong> Sie ist der Klassiker: Leise, sauber und verbraucht wenig Strom. Das Winter-Problem: Der Gasverbrauch ist enorm. Eine 5kg-Flasche kann bei Dauerfrost in 2-3 Tagen leer sein. Da viele Pickups nur Platz für kleine Flaschen haben, wird der Nachschub zum Stressfaktor. Lösung: DuoControl (automatisches Umschalten auf die Reserveflasche) und genügend Vorrat.</p>
+
+                <p><strong>Die Dieselstandheizung (z.B. Autoterm/Webasto):</strong> Sie bedient sich direkt aus dem Fahrzeugtank (oder einem eigenen Kanister). Der Vorteil: Du hast quasi „unendlich" Brennstoff dabei und musst keine Flaschen schleppen. Das Winter-Problem: Sie braucht viel Strom für den Lüfter und die Pumpe. Zudem ist sie lauter (Klackern der Dosierpumpe), was auf engen Stellplätzen Nachbarn stören kann. Lösung: Große Batteriekapazität einplanen!</p>
+
+                <h3>3. Der Endgegner: Kondenswasser</h3>
+                <p>In keiner anderen Wohnform ist das Verhältnis von Raumvolumen zu Bewohnerzahl so kritisch wie in einer Pickup-Kabine. Zwei Personen atmen, kochen und schwitzen auf 6-8 Quadratmetern. Die warme Luft speichert Feuchtigkeit, die an der kältesten Stelle kondensiert (Kältebrücken). Typische nasse Stellen: Fensterrahmen, die Ecken im Alkoven, Schraubenköpfe oder der Boden unter der Matratze.</p>
+
+                <p><strong>Die 3-Schritte-Strategie gegen Schimmel:</strong></p>
+
+                <p><strong>Lüften, Lüften, Lüften:</strong> Es klingt paradox, aber du musst die teure Wärme rauslassen. Stoßlüften (morgens und nach dem Kochen) tauscht die feuchte Innenluft gegen trockene Winterluft aus.</p>
+
+                <p><strong>Unterlüftung:</strong> Die Matratze im Alkoven darf niemals direkt auf der Bodenplatte liegen. Darunter bildet sich sofort Schimmel. Nutze zwingend ein 3D-Abstandsgewirke (Mesh-Gewebe) oder das Froli-System, damit die Luft unter der Matratze zirkulieren kann.</p>
+
+                <p><strong>Heizen:</strong> Die Heizung darf nie ganz aus sein, auch wenn ihr tagsüber Skifahren seid. Halte eine Grundtemperatur (ca. 10-12 Grad), damit die Wände nicht auskühlen.</p>
+
+                <h3>4. Strom: Wenn die Sonne streikt</h3>
+                <p>Im Sommer liefert dein Solarpanel Energie im Überfluss. Im Winter liefert es: fast nichts. Die Sonne steht tief, der Himmel ist grau oder Schnee bedeckt das Panel. Gleichzeitig läuft die Heizung durch und das Licht brennt früher.</p>
+
+                <p><strong>Lithium-Batterien (LiFePO4):</strong> Sie sind der Standard, haben aber eine Schwäche. Unter 0 Grad lassen sie sich oft nicht mehr laden (Schutzschaltung). Achte darauf, dass deine Batterie im beheizten Innenraum verbaut ist oder über eine integrierte Heizmatte verfügt (z.B. Arctic-Versionen).</p>
+
+                <p><strong>Der Ladebooster:</strong> Er ist im Winter deine Lebensversicherung. Er lädt die Aufbaubatterie während der Fahrt extrem schnell über die Lichtmaschine auf. Oft reicht eine Stunde Fahrt, um den Strombedarf für die nächste Nacht zu decken.</p>
+
+                <h3>5. Das Basisfahrzeug: Startklar bei Minusgraden</h3>
+                <p>Vergiss bei aller Liebe zur Kabine den Pickup nicht.</p>
+
+                <p><strong>Winterdiesel:</strong> Ab gewissen Minustemperaturen „sulzt" Diesel. Tanke in Skigebieten vor Ort (dort ist der Diesel oft kältefester additiviert) oder nutze Fließverbesserer-Additive.</p>
+
+                <p><strong>Türdichtungen:</strong> Behandle die Gummis mit Silikonspray oder Hirschtalg. Nichts ist ärgerlicher, als wenn du morgens nicht in dein Auto kommst, um den Motor zu starten.</p>
+
+                <p><strong>Berge-Equipment:</strong> Schneeketten gehören in den Fußraum, nicht unter das Gepäck ganz hinten. Auch ein Klappspaten und ein Bergegurt sollten immer griffbereit sein. Auch mit Allrad gibt es Situationen, wo Physik gewinnt.</p>
+
+                <h3>Fazit</h3>
+                <p>Wintercamping mit dem Pickup ist intensiv. Es erfordert Disziplin beim Lüften und ein waches Auge auf die Energie-Reserven. Aber die Belohnung ist unbezahlbar: Wenn du morgens die Hecktür öffnest, der Schnee im Sonnenlicht glitzert und du der Erste auf der Piste oder der Einzige im Wald bist, weißt du, dass sich der Aufwand gelohnt hat.</p>
+            </div>
+        </div>
+
+        <div id="article-2" class="article-full">
+            <div class="article-full-header">
+                <img src="/img/image-3.png" alt="Offroad" class="article-full-image">
+                <div class="article-full-title-overlay">
+                    <h2>Dorthin, wo andere umkehren: Entdecke die Welt abseits des Asphalts</h2>
+                </div>
+            </div>
+            <div class="article-full-content">
+                <a href="#" class="back-btn" onclick="showHome(); return false;">← Zurück</a>
+                
+                <p>Hand aufs Herz: Die schönsten Stellplätze stehen in keinem Campingführer. Sie liegen am Ende eines ausgewaschenen Feldwegs, hinter einer steilen Schotterpassage oder tief in einem Waldstück, dessen Zufahrt matschig ist. Während Fahrer herkömmlicher Wohnmobile beim Schild „Straßenschäden" nervös auf die Bremse treten, fängt für dich im Pickup das Abenteuer erst an. Eine Ode an die Geländetauglichkeit und die Orte, die sie dir eröffnet.</p>
+
+                <p>Es gibt diesen einen Moment, den jeder Pickup-Reisende kennt und liebt. Du fährst auf einer schmalen Küstenstraße in Griechenland oder Sardinien. Vor dir schleicht ein riesiges, weißes Wohnmobil. Plötzlich taucht rechts ein kleiner, unscheinbarer Pfad auf, der steil hinunter zu einer einsamen Bucht führt. Das Wohnmobil fährt weiter – zu riskant, zu wenig Bodenfreiheit, Angst vor dem Festfahren. Du aber blinkst rechts, schaltest den Allrad zu und rollst langsam hinunter. Zehn Minuten später stehst du allein am Wasser. Das ist der Moment, in dem sich die Investition ausgezahlt hat.</p>
+
+                <p>Doch die Offroad-Fähigkeit eines Pickups mit Wohnkabine ist nicht nur etwas für Wüstenfüchse oder Extrem-Abenteurer. Sie ist der Schlüssel zu einer völlig neuen Art des Reisens in Europa.</p>
+
+                <h3>1. Die „Letzte Meile" entscheidet</h3>
+                <p>Oft wird Offroad-Fahren mit der Rallye Dakar verwechselt. Doch im Reisealltag geht es selten darum, durch meterhohe Dünen zu springen. Es geht um die „letzte Meile" zum Traumplatz.</p>
+
+                <p><strong>Die nasse Wiese:</strong> Jeder Camper kennt die Angst vor dem regennassen Gras am Morgen. Während der Frontantriebler hilflos durchdreht und der Traktor vom Bauern gerufen werden muss, legst du entspannt den 4H (High Range Allrad) ein und fährst ohne Flurschaden von der Wiese.</p>
+
+                <p><strong>Der Strandzugang:</strong> In Ländern wie Dänemark (z.B. Rømø oder Fanø) ist das Befahren bestimmter Strände erlaubt. Wo schwere Wohnmobile im Weichsand steckenbleiben, reduzierst du den Reifendruck, nutzt dein Drehmoment und findest den perfekten Spot direkt an der Brandung.</p>
+
+                <p><strong>Winterziele:</strong> Verschneite Pässe in den Alpen oder vereiste Pisten in Lappland verlieren ihren Schrecken. Du kommst sicher an Orte, die im Winter sonst verwaist sind.</p>
+
+                <h3>2. Alpenpässe und alte Militärstraßen</h3>
+                <p>Für viele Pickup-Reisende sind die Westalpen das Paradies schlechthin. Die alten Militärstraßen im Grenzgebiet zwischen Frankreich und Italien (wie die legendäre Ligurische Grenzkammstraße oder die Assietta-Kammstraße) sind legale Offroad-Strecken, die dich auf über 2.000 Meter Höhe führen.</p>
+
+                <p>Hier schlägt die Stunde der kompakten Maße. Ein 7-Meter-Wohnmobil würde in den engen Serpentinen scheitern oder mit dem langen Hecküberhang aufsetzen. Der Pickup hingegen klettert dank Untersetzung (Low Range) die steilsten Rampen hoch, ohne dass die Kupplung raucht. Oben angekommen, übernachtest du (wo erlaubt) unter einem Sternenhimmel, der klarer ist als irgendwo sonst, fernab von Lärm und Lichtverschmutzung.</p>
+
+                <h3>3. Der Faktor „Stressfreiheit" in engen Dörfern</h3>
+                <p>Abenteuer bedeutet nicht immer Schotter. Manchmal ist das Abenteuer ein italienisches Bergdorf oder eine historische Altstadt in Spanien. Wer schon einmal mit einem 2,35 Meter breiten Teilintegrierten durch sizilianische Gassen navigiert hat, kennt den kalten Schweiß auf der Stirn. Eine Pickup-Kabine ist oft kaum breiter als das Zugfahrzeug (ca. 2,10 – 2,20 Meter).</p>
+
+                <p><strong>Spiegel an Spiegel:</strong> Du passt durch Engstellen, wo andere kapitulieren.</p>
+
+                <p><strong>Lichtraumprofil:</strong> Da die Kabine oben schmaler zuläuft (besonders bei Pop-Up-Kabinen), hast du weniger Stress mit Balkonen oder tiefhängenden Dachrinnen in engen Gassen.</p>
+
+                <p><strong>Parkplatzsuche:</strong> Mit einer Gesamtlänge von meist unter 6 Metern passt du auf viele PKW-Parkplätze am Supermarkt oder am Wanderstartpunkt. Das macht spontane Stopps erst möglich.</p>
+
+                <h3>4. Naturverträglichkeit und Verantwortung</h3>
+                <p>„Offroad" heißt nicht „Querfeldein". Das ist ein wichtiger Punkt für uns alle, die dieses Hobby lieben. Ein Pickup ermöglicht es, schlechte Wege zu fahren, nicht aber, neue Wege in die Natur zu fräsen. Gerade weil wir Fahrzeuge haben, die fast überall hinkommen, tragen wir eine besondere Verantwortung.</p>
+
+                <p><strong>Respekt:</strong> Wir bleiben auf bestehenden Wegen (auch wenn sie holprig sind).</p>
+
+                <p><strong>Spurenlos:</strong> Wir hinterlassen nichts außer Reifenspuren im Staub.</p>
+
+                <p><strong>Bergung:</strong> Ein weiterer Vorteil der Community – Pickup-Fahrer helfen sich. Mit Bergegurt und Sandblechen ausgestattet, bist du oft derjenige, der andere Reisende aus der Patsche zieht. Das schafft Freunde fürs Leben.</p>
+
+                <h3>5. Das Gefühl von echter Unabhängigkeit</h3>
+                <p>Am Ende ist es ein Gefühl. Das Wissen, dass dein Fahrzeug mehr kann, als du ihm heute abverlangst, entspannt ungemein. Du musst nicht wochenlang im Voraus buchen, weil du nicht auf die Infrastruktur von Premium-Campingplätzen angewiesen bist. Du folgst einer Piste auf der Karte, nur um zu sehen, wohin sie führt. Vielleicht endet sie im Nichts. Vielleicht endet sie aber an einem Bergsee, an dem seit Wochen kein Mensch war. Und genau dort machst du den Motor aus, öffnest dir ein kaltes Getränk aus dem Kühlschrank und genießt die Stille.</p>
+
+                <p>Das ist Pickup-Reisen. Nicht der Weg des geringsten Widerstands, sondern der Weg des größten Erlebnisses.</p>
+            </div>
+        </div>
+
+        <div id="article-3" class="article-full">
+            <div class="article-full-header">
+                <img src="/img/image-5.png" alt="Gebrauchtkauf" class="article-full-image">
+                <div class="article-full-title-overlay">
+                    <h2>Gebraucht ins Abenteuer: Worauf du beim Kauf eines Pickup-Campers achten musst</h2>
+                </div>
+            </div>
+            <div class="article-full-content">
+                <a href="#" class="back-btn" onclick="showHome(); return false;">← Zurück</a>
+                
+                <p>Der Traum vom Pickup-Reisen scheitert oft am Preisschild. Wer neu kauft, landet schnell im sechsstelligen Bereich. Der Gebrauchtmarkt lockt mit günstigen Einstiegspreisen, ist aber ein Minenfeld. Denn hier kaufst du nicht nur einen Gebrauchtwagen, sondern auch eine potenzielle Baustelle auf der Ladefläche. Wir zeigen dir, wie du Wasserschäden erkennst, verschlissene Fahrwerke entlarvst und deinen Traum realisierst, ohne arm zu werden.</p>
+
+                <p>Die Kombination aus Pickup und Kabine hat einen riesigen Vorteil: Sie ist langlebig. Da die Kabine keinen eigenen Motor und keinen Tacho hat, kann sie – gute Pflege vorausgesetzt – Jahrzehnte überdauern, während der Pickup darunter schon dreimal gewechselt wurde. Doch genau hier liegt die Gefahr für Käufer. Oft werden uralte Kabinen auf neueren Pickups verkauft oder völlig "durchgerittene" Lastesel als "Liebhaberfahrzeuge" angepriesen.</p>
+
+                <p>Damit die erste Reise nicht in der Werkstatt endet, brauchst du beim Besichtigungstermin zwei Dinge: Ein Feuchtigkeitsmessgerät und keine rosarote Brille.</p>
+
+                <h3>1. Der Pickup: Arbeitstier oder Show-Truck?</h3>
+                <p>Pickups werden oft hart rangenommen. Sie sind Nutzfahrzeuge. Beim Gebrauchtkauf musst du herausfinden, was das Fahrzeug in seinem ersten Leben getan hat.</p>
+
+                <p><strong>Der Rahmen-Check:</strong> Pickups haben einen Leiterrahmen aus Stahl. Krieche unter das Auto! Sieh dir den Rahmen genau an. Flugrost ist normal, aber blättert der Rost schon in Schichten ab? Wurde der Unterbodenschutz frisch "übergeduscht", um Rost zu verstecken?</p>
+
+                <p><strong>Die Anhängerkupplung:</strong> Ein Blick auf den Kugelkopf verrät viel. Ist er stark abgeschliffen? Das deutet auf schweren Hängerbetrieb (Pferde, Bau, Forst) hin. Das stresst das Automatikgetriebe und den Wandler enorm.</p>
+
+                <p><strong>Ladeflächen-Sünden:</strong> Wenn du eine Absetzkabine kaufst, schau dir die Befestigungspunkte auf der Ladefläche an. Wurden hier amateurhaft Löcher ins Blech gebohrt? Rostet es an den Zurrösen?</p>
+
+                <h3>2. Die Kabine: Der Feind heißt Wasser</h3>
+                <p>Das absolut wichtigste Kriterium bei gebrauchten Wohnkabinen – egal ob GFK oder Alu – ist Dichtigkeit. Wasser findet immer einen Weg, und oft bemerkt man es erst, wenn das Holzgerüst im Inneren verfault ist (der sogenannte "Torf").</p>
+
+                <p><strong>Deine Checkliste für die Kabine:</strong></p>
+
+                <p><strong>Die Nase:</strong> Riecht es beim Betreten muffig, schimmelig oder übertrieben stark nach Raumspray/Wunderbaum? Alarmstufe Rot!</p>
+
+                <p><strong>Das Messgerät:</strong> Kaufe dir für 30–50 Euro ein kapazitives Feuchtigkeitsmessgerät (eines, das nicht ins Material sticht, sondern auflegt). Gehe damit alle Wände ab, besonders in den Ecken, um die Fenster und im Alkoven ganz vorne. Zeigt das Gerät hohe Ausschläge: Finger weg!</p>
+
+                <p><strong>Die Stützen:</strong> Kurbel die Kabine beim Test einmal komplett hoch und runter. Laufen die Stützen ruhig oder knacken und klemmen sie? Sind die Aufnahmen am Kabinenkorpus fest oder ist das Holz dort weich, sodass sich die Halterung bewegt?</p>
+
+                <p><strong>Der Alkovenboden:</strong> Lege dich ins Bett und drücke gegen die Decke und (wichtiger) taste den Boden unter der Matratze ab. Fühlt sich alles fest an oder gibt das Material schwammig nach?</p>
+
+                <h3>3. Das Fahrwerk: Der versteckte Kostenfaktor</h3>
+                <p>Oft verkaufen Besitzer ihr Gespann, weil sie mit dem Fahrverhalten unzufrieden waren, aber das Geld für eine teure Fahrwerksoptimierung gescheut haben. Achte bei der Probefahrt (unbedingt mit aufgesattelter Kabine!) auf folgendes:</p>
+
+                <p><strong>Der "Hängearsch":</strong> Steht der Pickup hinten deutlich tiefer als vorne? Dann sind die Blattfedern durchgenudelt.</p>
+
+                <p><strong>Das Nachwippen:</strong> Wenn du über eine Bodenwelle fährst, darf das Fahrzeug nicht mehrmals nachschwingen. Tut es das, sind die Stoßdämpfer hinüber.</p>
+
+                <p><strong>Reifen:</strong> Sind normale Straßenreifen montiert? Rechne sofort ca. 800–1.000 € für vernünftige All-Terrain-Reifen (ATs) ein.</p>
+
+                <h3>4. Die Verbindung: Passt das überhaupt zusammen?</h3>
+                <p>Vorsicht bei "wild zusammengewürfelten" Sets. Nicht jede Kabine passt auf jeden Pickup (Double Cab vs. Extra Cab).</p>
+
+                <p><strong>Schwerpunkt:</strong> Liegt der Schwerpunkt der Kabine (meist markiert oder in der Anleitung zu finden) vor oder auf der Hinterachse? Wenn er deutlich hinter der Hinterachse liegt, wird das Fahren zur Qual und ist gefährlich (Vorderachse verliert Bodenhaftung).</p>
+
+                <p><strong>Elektrik:</strong> Funktioniert die Verbindung zwischen Auto und Kabine? Werden die Batterien geladen? Leuchten die Rücklichter? Oft sind die 13-poligen Stecker korrodiert.</p>
+
+                <h3>5. Das Fazit: Geduld spart Geld</h3>
+                <p>Gebrauchte Pickup-Camper sind rar und die Preise oft hoch. Lass dich dennoch nicht unter Druck setzen ("Da kommen heute noch drei andere Interessenten"). Ein ehrliches Gespann darf Gebrauchsspuren haben – Kratzer im Lack oder eine verlebte Polsterung sind kosmetisch und leicht zu beheben. Aber ein verrosteter Rahmen oder eine nasse Kabinenwand sind wirtschaftliche Totalschäden.</p>
+
+                <p><strong>Der Geheimtipp:</strong> Suche antizyklisch. Im November oder Januar verkaufen viele ihre Fahrzeuge, um Standkosten zu sparen. Im Mai, kurz vor der Saison, sind die Preise am höchsten.</p>
+
+                <p>Wer genau hinschaut, kann für 30.000 bis 40.000 Euro ein Set finden, das noch viele Jahre Freude macht und den Weg zu Orten ebnet, die unbezahlbar sind.</p>
+            </div>
+        </div>
+
+        <div id="article-4" class="article-full">
+            <div class="article-full-header">
+                <img src="/img/image-2.png" alt="Fahrwerk" class="article-full-image">
+                <div class="article-full-title-overlay">
+                    <h2>Sicher unterwegs: Der große Ratgeber zu Gewicht, Fahrwerk und Offroad-Fahren mit Kabine</h2>
+                </div>
+            </div>
+            <div class="article-full-content">
+                <a href="#" class="back-btn" onclick="showHome(); return false;">← Zurück</a>
+                
+                <p>Ein Pickup mit Wohnkabine ist der Inbegriff von Freiheit. Doch physikalisch betrachtet ist er eine Herausforderung: Ein hoher Schwerpunkt trifft auf ein hohes Gewicht und anspruchsvolles Gelände. Damit der Traum vom Abenteuer nicht im Graben oder auf der Waage der Polizei endet, müssen Pickup-Reisende ihre Hausaufgaben machen. Hier ist alles, was du über Zuladung, Fahrwerks-Upgrades und das Fahren im Grenzbereich wissen musst.</p>
+
+                <p>Es ist ein offenes Geheimnis in der Szene: Ein Großteil der Pickup-Camper ist überladen unterwegs. Die Hersteller werben oft mit „1 Tonne Nutzlast", doch die Realität sieht anders aus. Wer Sicherheit und Langlebigkeit will, muss verstehen, wie sein Fahrzeug unter der Last arbeitet und wie man es darauf vorbereitet. Physik lässt sich nicht austricksen – aber man kann sie managen.</p>
+
+                <h3>1. Die Mathematik der Zuladung: Eine böse Überraschung</h3>
+                <p>Fangen wir mit dem Elefanten im Raum an: Dem Gewicht. Ein moderner Double-Cab Pickup wiegt leer oft schon ca. 2.200 kg. Das zulässige Gesamtgewicht (zGG) liegt meist bei 3.200 bis 3.500 kg. Bleiben auf dem Papier rund 1.000 kg Zuladung. Das klingt viel, schmilzt aber wie Eis in der Wüste:</p>
+
+                <p>Die Kabine: Eine gut ausgestattete Hardwall-Kabine wiegt "trocken" oft schon 600–750 kg.</p>
+
+                <p>Die Ausstattung: Markise, Stützen, Zusatzbatterie, Solarpanel (ca. 100 kg).</p>
+
+                <p>Die Passagiere: Fahrer und Beifahrer (ca. 150 kg).</p>
+
+                <p>Flüssigkeiten: 80 Liter Wasser, 80 Liter Diesel, 11 kg Gas (ca. 170 kg).</p>
+
+                <p>Gepäck: Kleidung, Campingstühle, Grill, Werkzeug, Bergematerial.</p>
+
+                <p>Das Ergebnis: Schnell bist du bei 3.600 kg oder mehr. Das ist nicht nur illegal (Bußgelder, Verlust des Versicherungsschutzes), es ist gefährlich. Die Bremswege verlängern sich drastisch, und Achsen oder Rahmen können brechen.</p>
+
+                <p><strong>Der Profi-Tipp:</strong> Fahre mit deinem leeren Pickup (aber vollgetankt und mit Personen) auf eine Waage bevor du eine Kabine kaufst. Ziehe dieses Gewicht vom zGG ab. Das ist dein reales Budget für die Kabine und das Gepäck.</p>
+
+                <h3>2. Das Fahrwerk: Warum Serie nicht reicht</h3>
+                <p>Serienmäßige Pickups sind Kompromisslösungen. Sie müssen leer komfortabel federn und beladen sicher fahren. Kommt nun dauerhaft eine schwere Kabine mit hohem Schwerpunkt auf die Hinterachse, geht das Serienfahrwerk in die Knie. Der Wagen hängt hinten runter ("Hängearsch"), die Lenkung wird schwammig, weil die Vorderachse entlastet wird.</p>
+
+                <p>Hier gibt es zwei Hauptwege zur Besserung:</p>
+
+                <p><strong>A. Die Zusatz-Luftfederung (Der Klassiker):</strong> Hier werden Luftbälge zwischen Achse und Rahmen montiert.</p>
+
+                <p>Vorteil: Du kannst das Fahrzeugniveau per Kompressor ausgleichen. Der Wagen steht wieder gerade, die Scheinwerfer blenden nicht.</p>
+
+                <p>Gefahr: Luftfedern ändern nichts an der Traglast der Achse. Schlimmer noch: Da sie oft hinter dem eigentlichen Auflagepunkt der Blattfedern montiert werden, verlagern sie die Kraft ungünstig auf den Rahmen. Bei modernen Pickups (Stichwort: Rahmenbruch beim Ford Ranger oder Nissan Navara) ist hier Vorsicht geboten. Rahmenverstärkungen sind oft ratsam.</p>
+
+                <p><strong>B. Das Komplettfahrwerk (Die Profi-Lösung):</strong> Wer viel Offroad fährt, tauscht das ganze Fahrwerk (Dämpfer und Federn).</p>
+
+                <p>Vorteil: Verstärkte Blattfedern ("Heavy Duty") tragen die Last dauerhaft besser. Hochwertige Dämpfer (z.B. OME, Koni, Fox) schlucken Pistenstöße souveräner und verhindern das gefährliche Nachwippen der schweren Kabine.</p>
+
+                <p>Nachteil: Ohne Kabine fährt sich der Pickup dann oft sehr hart und bockig.</p>
+
+                <h3>3. Der Schwerpunkt: Die Angst vor dem Kippen</h3>
+                <p>Im Gegensatz zum Kastenwagen sitzt die Masse beim Pickup-Camper weit oben und weit hinten. Das erhöht die Wankneigung (Rollen um die Längsachse).</p>
+
+                <p><strong>So fährst du sicher:</strong></p>
+
+                <p>Pack-Strategie: Alles Schwere (Konserven, Wasser, Werkzeug, Batterien) muss so tief und so weit nach vorne (Richtung Fahrerkabine) wie möglich gelagert werden. Leichte Sachen (Kleidung, Schlafsäcke) kommen in die Oberschränke.</p>
+
+                <p>Kurvengeschwindigkeit: Ein Pickup mit Kabine ist kein Rennwagen. Kurven müssen deutlich langsamer angefahren werden. Das ESP greift oft spät ein.</p>
+
+                <p>Spurverbreiterung: Oft helfen schon breitere Reifen oder Spurplatten, um die "Standfläche" des Fahrzeugs zu vergrößern und die Stabilität zu erhöhen.</p>
+
+                <h3>4. Offroad mit Kabine: Wo sind die Grenzen?</h3>
+                <p>Du hast Allrad, du hast Untersetzung, du hast Bodenfreiheit. Doch mit Kabine gelten andere Regeln im Gelände.</p>
+
+                <p><strong>Der Böschungswinkel hinten:</strong> Viele Kabinen ragen über das Heck des Pickups hinaus. Bei steilen Auffahrten oder beim Durchfahren von Senken setzt das Heck der Kabine auf, bevor die Räder den Boden berühren. Das führt zu teuren Schäden.</p>
+
+                <p><strong>Schräglagen:</strong> Das ist der Feind Nummer 1. Was sich im Jeep harmlos anfühlt, wird mit dem hohen Schwerpunkt der Wohnkabine zur Kippgefahr. Vermeide seitliche Schrägen, wo immer es geht.</p>
+
+                <p><strong>Äste und Höhe:</strong> Du bist jetzt ca. 3 Meter hoch und breiter als gedacht. Im Wald findet man sich schnell mit tiefhängenden Ästen an, die Acrylfenster zerkratzen oder Dachluken abreißen.</p>
+
+                <h3>5. Reifen: Der einzige Kontakt zur Straße</h3>
+                <p>Vergiss die serienmäßigen Straßenreifen, wenn du reisen willst. Aber Vorsicht bei grobstolligen MT-Reifen (Mud Terrain) – diese sind auf nasser Straße oft rutschig und laut.</p>
+
+                <p>Der AT-Reifen (All Terrain) ist der perfekte Kompromiss. Modelle wie der BF Goodrich KO2 oder der General Grabber AT3 bieten Grip auf Schotter und Wiese, sind robust gegen spitze Steine (verstärkte Flanken) und fahren sich auf Asphalt akzeptabel. Wichtig: Achte beim Reifenkauf zwingend auf den Lastindex (Load Index). Deine Reifen müssen das hohe Gewicht auch dynamisch (beim Bremsen oder in Kurven) tragen können!</p>
+
+                <h3>Fazit: Erst die Technik, dann das Vergnügen</h3>
+                <p>Es klingt nach viel Aufwand und Warnungen. Aber lass dich nicht entmutigen. Ein Pickup, der fahrwerkstechnisch sauber auf seine Kabine abgestimmt ist (Auflastung, Dämpfer, Reifen), fährt sich traumhaft sicher. Wer diese Hausaufgaben erledigt, reist entspannter. Denn echte Freiheit genießt man erst dann, wenn man sich um sein Fahrzeug keine Sorgen machen muss, während man den einsamen Strandpfad hinunterrollt.</p>
+            </div>
+        </div>
+
+        <div id="article-5" class="article-full">
+            <div class="article-full-header">
+                <img src="/img/image-1.png" alt="Kabinen" class="article-full-image">
+                <div class="article-full-title-overlay">
+                    <h2>Absetzkabine vs. Festaufbau: Die Gretchenfrage für Pickup-Reisende</h2>
+                </div>
+            </div>
+            <div class="article-full-content">
+                <a href="#" class="back-btn" onclick="showHome(); return false;">← Zurück</a>
+                
+                <p>Wer sich entscheidet, mit dem Pickup auf Reisen zu gehen, steht unweigerlich vor einer fundamentalen Weichenstellung: Soll die Kabine flexibel abnehmbar sein oder fest mit dem Fahrzeugrahmen verbaut werden? Beide Konzepte haben glühende Anhänger und beide haben gravierende Vor- und Nachteile. In diesem Artikel analysieren wir Technik, Fahrdynamik und Kosten, damit du die richtige Entscheidung für dein Abenteuer triffst.</p>
+
+                <p>Der Pickup-Markt für Reisende hat sich in zwei Lager gespalten. Auf der einen Seite stehen die Verfechter der maximalen Flexibilität, die ihre Kabine (Slide-in Camper) am Wochenende nutzen und montags mit leerer Ladefläche zur Arbeit fahren. Auf der anderen Seite stehen die Puristen und Fernreisenden, die auf den Festaufbau (Chassis-Mount) schwören, um das Maximum an Raum und Geländetauglichkeit herauszuholen.</p>
+
+                <p>Doch die Entscheidung ist weit mehr als eine Geschmacksfrage. Sie beeinflusst den Reisealltag, die Fahrphysik und nicht zuletzt den Wiederverkaufswert massiv.</p>
+
+                <h3>1. Die Absetzkabine (Slide-in): Der König der Flexibilität</h3>
+                <p>Dies ist die klassische Form der Pickup-Kabine. Sie wird auf die vorhandene Pritsche des Pickups geschoben und dort mit Spannschlössern oder Gurten an den Zurrösen befestigt.</p>
+
+                <p><strong>Die Vorteile:</strong></p>
+
+                <p>Das "Zwei-in-Eins"-Prinzip: Das ist das stärkste Argument. Du besitzt nur ein Fahrzeug. Während die Kabine im Garten steht, ist der Pickup ein vollwertiges Alltagsauto, ein Zugfahrzeug für Pferdeanhänger oder ein Transporter.</p>
+
+                <p>Rechtliche Freiheit: In Deutschland (und vielen anderen Ländern) gilt eine abnehmbare Kabine, die ohne Werkzeug demontierbar ist, meist als Ladung. Das bedeutet: Keine extra TÜV-Abnahme für die Kabine, keine gesonderte Versicherung (wobei eine Zusatzversicherung ratsam ist) und keine Änderung in den Fahrzeugpapieren.</p>
+
+                <p>Fahrzeugwechsel: Dein Pickup hat nach 250.000 Kilometern ausgedient oder du willst von Ford auf Toyota wechseln? Kein Problem. Du behältst die Kabine und tauschst nur das Basisfahrzeug aus. Das spart langfristig enorm viel Geld.</p>
+
+                <p><strong>Die Nachteile:</strong></p>
+
+                <p>Gewicht und Schwerpunkt: Da die Kabine auf die Ladefläche gestellt wird, liegt der Boden der Kabine sehr hoch. Das treibt den Schwerpunkt nach oben, was das Wanken in Kurven verstärkt. Zudem hast du das Gewicht der stählernen Ladefläche (ca. 100-150 kg) immer dabei, obwohl du sie im Reisemodus gar nicht bräuchtest.</p>
+
+                <p>Raumverlust: Die Seitenwände der Ladefläche und die Radkästen diktieren den Grundriss. Du verlierst wertvollen Stauraum durch die "Doppelwandigkeit" (Blechwand des Pickups + Wand der Kabine).</p>
+
+                <h3>2. Der Festaufbau (Chassis-Mount): Das Expeditions-Mobil</h3>
+                <p>Bei dieser Variante wird die originale Ladefläche (Pritsche) komplett demontiert. Die Wohnkabine wird direkt auf den Leiterrahmen des Fahrzeugs geschraubt. Oder es wird ein spezieller Zwischenrahmen gefertigt, auf dem die Kabine ruht.</p>
+
+                <p><strong>Die Vorteile:</strong></p>
+
+                <p>Perfekte Raumausnutzung: Da keine Ladebordwände im Weg sind, kann die Kabine breiter bauen oder intelligente Staufächer (Stauboxen) unterhalb der Bodenlinie integrieren. Der Innenraum wirkt bei gleichen Außenmaßen oft deutlich größer.</p>
+
+                <p>Bessere Fahrphysik: Der Schwerpunkt sinkt drastisch, da der Kabinenboden direkt über dem Rahmen liegt. Zudem sparst du das Gewicht der unnötigen Ladefläche ein. Das Resultat: Ein satteres Fahrgefühl, weniger Wanken und mehr Zuladungsreserven für Wasser und Ausrüstung.</p>
+
+                <p>Einstieg: Oft ermöglicht der Festaufbau einen seitlichen Einstieg mit einer bequemen Treppe, während man bei Absetzkabinen fast immer von hinten einsteigt.</p>
+
+                <p><strong>Die Nachteile:</strong></p>
+
+                <p>Die "Ehe" auf Lebenszeit: Pickup und Kabine sind untrennbar verbunden. Das Fahrzeug ist im Alltag als normaler PKW kaum nutzbar (Höhe, Breite, Parkplatzsuche).</p>
+
+                <p>Wiederverkauf: Du musst immer das komplette Paket verkaufen. Findet sich kein Käufer, der genau deine Kombination aus Fahrzeugalter und Kabinenzustand sucht, wird der Verkauf schwieriger.</p>
+
+                <p>Rechtliches: Das Fahrzeug muss zwingend als "Wohnmobil" umgeschrieben werden. Das hat steuerliche und versicherungstechnische Auswirkungen (oft positiv, aber bürokratisch aufwendiger).</p>
+
+                <h3>3. Der Hybrid: Die Flatbed-Lösung (Tray-Back)</h3>
+                <p>Für viele Profis ist dies der "Goldene Schnitt". Hierbei wird die originale Ladefläche entfernt und durch eine flache Aluminium-Plattform (Flatbed/Tray) ersetzt, die permanent auf dem Pickup bleibt. Darauf kommt eine speziell gefertigte Absetzkabine.</p>
+
+                <p>Der Vorteil: Du hast riesige Staufächer an den Seiten (unterhalb der Plattform), keinen störenden Radkasten im Innenraum und kannst die Kabine trotzdem zu Hause absetzen. Der Pickup bleibt als Pritschenwagen nutzbar.</p>
+
+                <p>Der Nachteil: Es ist die teuerste Lösung, da du sowohl die Plattform als auch die Kabine kaufen musst.</p>
+
+                <h3>Entscheidungshilfe: Welcher Typ bist du?</h3>
+                <p>Um die Qual der Wahl zu erleichtern, ordne dich einem der folgenden Profile zu:</p>
+
+                <p><strong>Typ A: Der Alltags-Abenteurer</strong></p>
+                <p>Du nutzt den Pickup täglich zur Arbeit, fährst Kinder zur Schule oder brauchst ihn für den Baumarkt. Du reist 3-5 Wochen im Jahr und an verlängerten Wochenenden.</p>
+
+                <p>Empfehlung: Ganz klar die klassische Absetzkabine. Die Flexibilität wiegt die Nachteile der Raumnutzung auf.</p>
+
+                <p><strong>Typ B: Der Weltreisende (Overlander)</strong></p>
+                <p>Du planst die Panamericana oder die Seidenstraße. Du lebst monatelang im Fahrzeug. Der Pickup wird in dieser Zeit nicht für andere Zwecke benötigt.</p>
+
+                <p>Empfehlung: Der Festaufbau. Jeder Zentimeter Stauraum und jedes Kilogramm Gewichtsersparnis zählt im harten Geländeeinsatz und bei Dauerbewohnung.</p>
+
+                <p><strong>Typ C: Der Technik-Enthusiast</strong></p>
+                <p>Du willst das Optimum aus beiden Welten und das Budget spielt eine untergeordnete Rolle.</p>
+
+                <p>Empfehlung: Die Flatbed-Lösung. Sie bietet die Fahrdynamik und den Stauraum eines Festaufbaus, erhält aber die Option, das Basisfahrzeug später einfach zu tauschen.</p>
+
+                <h3>Fazit</h3>
+                <p>Es gibt kein "Besser" oder "Schlechter", nur ein "Passend" oder "Unpassend". Wer ehrlich zu sich selbst ist und analysiert, wie viel Prozent der Zeit das Fahrzeug wirklich zum Reisen genutzt wird, landet meist schnell bei der richtigen Antwort. Egal wie die Entscheidung ausfällt: Beide Systeme bringen dich an Orte, von denen Weißware-Wohnmobile nur träumen können.</p>
+            </div>
+        </div>
+
+        <div id="article-6" class="article-full">
+            <div class="article-full-header">
+                <img src="/img/image-0.png" alt="Freiheit" class="article-full-image">
+                <div class="article-full-title-overlay">
+                    <h2>Freiheit ohne Grenzen: Warum die Kombination aus Pickup und Wohnkabine das Reisen revolutioniert</h2>
+                </div>
+            </div>
+            <div class="article-full-content">
+                <a href="#" class="back-btn" onclick="showHome(); return false;">← Zurück</a>
+                
+                <p>Der Markt für Freizeitfahrzeuge boomt. Doch während Wohnmobile immer größer und luxuriöser werden, wächst eine Gegenbewegung, die sich auf das Wesentliche besinnt, ohne auf Komfort zu verzichten: Die Pickup-Wohnkabine. Warum dieses Konzept gerade für Individualisten, Abenteurer und Technik-Fans die eierlegende Wollmilchsau sein kann – und wo die Grenzen liegen.</p>
+
+                <p>Stell dir vor, du stehst an einer Gabelung. Links führt eine asphaltierte Straße zu einem voll belegten Campingplatz an der Riviera. Rechts zweigt ein schmaler, ausgewaschener Schotterpfad in die Seealpen ab. Mit einem herkömmlichen teilintegrierten Wohnmobil ist die Entscheidung meist schon gefallen – die Bodenfreiheit und der Überhang lassen keine Wahl. Wer jedoch in einem Pickup mit Wohnkabine sitzt, für den fängt der Urlaub an der rechten Abzweigung erst richtig an.</p>
+
+                <p>Die Faszination für "Truck Camper" ist längst von Nordamerika nach Europa geschwappt. Doch es ist mehr als nur ein Trend; es ist eine logische Antwort auf den Wunsch nach maximaler Flexibilität bei gleichzeitig hoher Geländetauglichkeit.</p>
+
+                <h3>Das Konzept: Modularität als Schlüssel</h3>
+                <p>Im Gegensatz zum klassischen Wohnmobil, bei dem Fahrzeug und Wohnraum eine untrennbare Einheit bilden, setzt das Pickup-Konzept auf Modularität. Das Basisfahrzeug ist ein handelsüblicher Pickup (in Europa meist Mid-Size-Trucks wie Ford Ranger, Toyota Hilux, Isuzu D-Max oder VW Amarok). Die Wohnkabine wird auf der Ladefläche verankert und gilt rechtlich in der Regel als Ladung.</p>
+
+                <p>Diese Trennung bietet einen strategischen Vorteil, den kein Kastenwagen bieten kann: Die Doppelnutzung.</p>
+
+                <p>Im Urlaub: Du hast ein vollwertiges Expeditionsmobil.</p>
+
+                <p>Im Alltag: Du stellst die Kabine auf ihre vier Kurbelstützen, fährst den Pickup heraus und hast einen leistungsstarken PKW für den Weg zur Arbeit, den Einkauf oder den Transport von Brennholz.</p>
+
+                <p>Diese Flexibilität spart nicht nur den Unterhalt für ein drittes Fahrzeug, sie löst auch das "Basislager-Problem": Wer auf einem Campingplatz steht, muss sein ganzes Haus nicht bewegen, nur um im nächsten Dorf Brötchen zu holen oder einen Tagesausflug zu einer engen Schlucht zu unternehmen.</p>
+
+                <h3>Fahrdynamik und Offroad-Performance</h3>
+                <p>Wer vom PKW oder einem normalen Wohnmobil kommt, wird die Fahrdynamik eines Pickups mit Kabine als "arbeitsamer", aber auch als souveräner empfinden. Der entscheidende Unterschied liegt im Unterbau. Pickups basieren auf einem Leiterrahmen-Chassis und verfügen über eine starre Hinterachse mit Blattfedern. Das ist LKW-Technik im Kleinformat – robust, aber auch etwas ruppiger.</p>
+
+                <p><strong>Der 4x4-Vorteil:</strong> Der wahre Trumpf wird ausgespielt, wenn der Asphalt endet. Zuschaltbarer Allradantrieb, Geländeuntersetzung (Low Range) und oft serienmäßige Hinterachs-Differentialsperren sind bei fast allen aktuellen Pickups Standard.</p>
+
+                <p>Böschungswinkel: Durch die kompakte Bauweise der Kabinen (oft schließen sie bündig mit dem Heck ab oder haben einen angeschrägten Heckbereich) setzt das Fahrzeug an steilen Auffahrten nicht auf.</p>
+
+                <p>Verschränkung: Im Gelände halten die Räder länger Bodenkontakt als bei steifen Kastenwagen-Karosserien.</p>
+
+                <p>Allerdings erfordert das Fahren mit Kabine Aufmerksamkeit: Der Schwerpunkt wandert deutlich nach oben. Wankbewegungen in Kurven sind stärker spürbar, und bei Schrägfahrten im Gelände ist Vorsicht geboten. Ein Fahrwerks-Upgrade (z.B. Luftfederung oder verstärkte Dämpfer) ist daher für viele, die regelmäßig mit Kabine reisen, eine fast unumgängliche Investition.</p>
+
+                <h3>Wohnkomfort: Raumwunder auf wenigen Quadratmetern</h3>
+                <p>Skeptiker befürchten oft Platzangst. Doch moderne Wohnkabinen sind Meisterwerke der Raumausnutzung. Der Grundriss ist meist klassisch:</p>
+
+                <p>Alkoven: Das Schlafzimmer befindet sich über dem Fahrerhaus. Das bedeutet, das Bett (oft 2,00m x 1,60m) muss tagsüber nicht umgebaut werden und nimmt keinen Wohnraum weg.</p>
+
+                <p>Sitzgruppe: Sie befindet sich meist quer oder längs im unteren Bereich und kann oft zum Kinderbett umgebaut werden.</p>
+
+                <p>Versorgung: Kompressor-Kühlschränke, Gasheizungen (Truma oder Alde) und 2-Flammen-Kocher sind Standard.</p>
+
+                <p>Der "Clou" ist die Autarkie. Da Pickups oft abseits der Zivilisation bewegt werden, sind die Kabinen meist für mehrere Tage Unabhängigkeit ausgelegt. Große Wassertanks (80-100 Liter sind keine Seltenheit), Solaranlagen auf dem Dach und Lithium-Batterien gehören oft zur Grundausstattung ambitionierter Reisender.</p>
+
+                <h3>Für wen lohnt sich der Umstieg?</h3>
+                <p>Ein Pickup-Gespann ist nicht billig. Ein neuer Pickup (45.000€ - 60.000€) plus eine winterfeste Hardwall-Kabine (30.000€ - 50.000€) summieren sich schnell auf den Preis eines gut ausgestatteten Kastenwagens.</p>
+
+                <p>Das System lohnt sich für dich, wenn:</p>
+
+                <p>Du Reiseziele ansteuerst, die Allrad erfordern (Island, Alpenpässe, Wüstenregionen, Skandinavien im Winter).</p>
+
+                <p>Du im Alltag ein Zugfahrzeug oder einen Transporter benötigst und kein separates Wohnmobil unterhalten willst.</p>
+
+                <p>Du Wert auf Langlebigkeit legst: Ist der Pickup nach 200.000 Kilometern "aufgebraucht", behältst du die Kabine einfach und kaufst einen neuen Untersatz.</p>
+
+                <p>Es ist weniger geeignet, wenn:</p>
+
+                <p>Du jeden Tag hunderte Kilometer auf der Autobahn "fressen" willst (hoher Verbrauch durch Luftwiderstand).</p>
+
+                <p>Du den Durchgang vom Fahrerhaus in den Wohnraum zwingend benötigst (bei den meisten Kabinen nicht oder nur sehr schwer möglich).</p>
+
+                <h3>Fazit: Die Freiheit, "Ja" zu sagen</h3>
+                <p>Am Ende ist die Entscheidung für einen Pickup mit Kabine eine Entscheidung für Möglichkeiten. Es ist die Freiheit, "Ja" zu sagen zu dem verschneiten Waldweg, zu dem sandigen Strandabschnitt in Griechenland oder der matschigen Wiese beim Festival. Es ist Reisen mit technischem Anspruch und dem beruhigenden Gefühl, dass das eigene Fahrzeug mehr kann, als man ihm meistens abverlangt. Es ist Camping für Fortgeschrittene – und für viele der Beginn einer lebenslangen Leidenschaft.</p>
+            </div>
+        </div>
+
+        <div id="impressum-view" class="impressum">
+            <a href="#" class="back-btn" onclick="showHome(); return false;">← Zurück</a>
+            <h2>Impressum</h2>
+            <h3>Angaben gemäß § 5 TMG</h3>
+            <p>Dominik Bittl<br>Steinmetzanlage 16<br>90431 Nürnberg</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Die Pickup Camper</p>
+            <p><a href="#" onclick="showImpressum(); return false;">Impressum</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function showHome() {
+            document.getElementById('home-view').style.display = 'block';
+            document.querySelectorAll('.article-full').forEach(el => el.classList.remove('active'));
+            document.querySelector('.impressum').classList.remove('active');
+        }
+        
+        function showArticle(num) {
+            document.getElementById('home-view').style.display = 'none';
+            document.querySelectorAll('.article-full').forEach(el => el.classList.remove('active'));
+            document.getElementById('article-' + num).classList.add('active');
+        }
+        
+        function showImpressum() {
+            document.getElementById('home-view').style.display = 'none';
+            document.querySelectorAll('.article-full').forEach(el => el.classList.remove('active'));
+            document.querySelector('.impressum').classList.add('active');
+        }
+    </script>
+</body>
+</html>

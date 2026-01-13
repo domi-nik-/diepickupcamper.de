@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Die Pickup Camper - Offroad Abenteuer & Reisen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --forest-green: #3d6359;
+            --light-green: #5a8174;
+            --copper: #d4914e;
+            --cream: #f2ebdb;
+            --off-white: #fffbf5;
+            --dark-text: #2d3436;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.7;
+            color: var(--dark-text);
+            background: linear-gradient(to bottom, #e8f5e9 0%, #f5f5f5 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header / Navigation */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--forest-green);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid var(--forest-green);
+            background: white;
+            padding: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--forest-green);
+            letter-spacing: -0.5px;
+        }
+
+        .brand .tagline {
+            font-size: 0.9rem;
+            color: var(--light-green);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--forest-green);
+            text-decoration: none;
+            font-size: 1rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--copper);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--copper);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero / Featured Article */
+        .hero {
+            margin: 3rem 0;
+            position: relative;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px var(--shadow);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .hero:hover {
+            transform: translateY(-5px);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+            padding: 3rem;
+            color: white;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--copper);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-meta {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .hero-excerpt {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 800px;
+        }
+
+        /* Blog Grid */
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--forest-green);
+            margin: 4rem 0 2rem;
+            text-align: center;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .article-card:hover .article-image {
+            transform: scale(1.05);
+        }
+
+        .article-content {
+            padding: 1.8rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-meta {
+            font-size: 0.85rem;
+            color: var(--light-green);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .article-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--forest-green);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .article-excerpt {
+            color: var(--dark-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--copper);
+            font-weight: 600;
+            text-decoration: none;
+            transition: gap 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 1rem;
+        }
+
+        /* Article Full View */
+        .article-full {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            padding: 0;
+            margin: 2rem 0;
+            box-shadow: 0 10px 40px var(--shadow);
+            overflow: hidden;
+        }
+
+        .article-full.active {
+            display: block;
+        }
+
+        .article-full-header {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .article-full-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .article-full-title-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+            padding: 3rem;
+            color: white;
+        }
+
+        .article-full-title-overlay h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .article-full-content {
+            padding: 3rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--forest-green);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .back-btn:hover {
+            background: var(--copper);
+            gap: 1rem;
+        }
+
+        .article-full-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--forest-green);
+            font-size: 1.8rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-full-content p {
+            margin-bottom: 1.3rem;
+            line-height: 1.8;
+        }
+
+        .article-full-content strong {
+            color: var(--forest-green);
+            font-weight: 700;
+        }
+
+        /* Impressum */
+        .impressum {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 40px var(--shadow);
+        }
+
+        .impressum.active {
+            display: block;
+        }
+
+        .impressum h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--forest-green);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .impressum h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--light-green);
+            font-size: 1.5rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .impressum p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--forest-green);
+            color: var(--cream);
+            padding: 3rem 0;
+            margin-top: 5rem;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        footer a {
+            color: var(--copper);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--cream);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .blog-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .logo-section {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero {
+                height: 400px;
+            }
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .article-full-content {
+                padding: 1.5rem;
+            }
+
+            .article-full-title-overlay h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .home-view {
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="100" r="90" fill="#3d6359"/>
+                    <circle cx="100" cy="100" r="75" fill="#5a8174"/>
+                    <path d="M70 110 L130 110 L130 90 L110 70 L90 70 L70 90 Z" fill="#d4914e"/>
+                    <circle cx="85" cy="120" r="8" fill="#2d3436"/>
+                    <circle cx="115" cy="120" r="8" fill="#2d3436"/>
+                    <rect x="75" y="95" width="50" height="15" fill="#f2ebdb" opacity="0.7"/>
+                </svg>
+                <div class="brand">
+                    <h1>Die Pickup Camper</h1>
+                    <span class="tagline">Offroad Reisen & Abenteuer</span>
+                </div>
+            </div>
+            <nav>
+                <a href="#" onclick="showHome(); return false;">Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="home-view" class="home-view">
+            <!-- Featured Article -->
+            <div class="hero" onclick="showArticle(1)">
+                <img src="/img/image-4.png" alt="Pickup Camper im Winter" class="hero-image">
+                <div class="hero-overlay">
+                    <span class="hero-badge">🔥 Neuester Artikel</span>
+                    <h2>Wintercamping im Pickup: Der ultimative Guide</h2>
+                    <div class="hero-meta">📅 15. Januar 2026 | ✍️ Dominik Bittl</div>
+                    <p class="hero-excerpt">Draußen minus 15 Grad, drinnen 22 Grad im T-Shirt. Wintercamping mit dem Pickup ist magisch – wenn man weiß, was man tut. Entdecke, wie du deine Kabine winterfest machst und den Endgegner Kondenswasser besiegst.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title">Alle Artikel</h2>
+
+            <div class="blog-grid">
+                <div class="article-card" onclick="showArticle(2)">
+                    <img src="/img/image-3.png" alt="Pickup Camper Offroad" class="article-image">
+                    <div class="article-content">
+                        <div class="article-meta">📅 28. Dezember 2025 | ✍️ Dominik Bittl</div>
+                        <h3>Dorthin, wo andere umkehren</h3>
+                        <p class="article-excerpt">Die schönsten Stellplätze stehen in keinem Campingführer. Sie liegen am Ende eines Feldwegs, hinter einer Schotterpassage oder tief im Wald. Eine Ode an die Geländetauglichkeit.</p>
+                        <a href="#" class="read-more" onclick="showArticle(2); return false;">Weiterlesen →</a>
+                    </div>
+                </div>
+
+                <div class="article-card" onclick="showArticle(3)">
+                    <img src="/img/image-5.png" alt="Pickup Truck Camper Check" class="article-image">
+                    <div class="article-content">
+                        <div class="article-meta">📅 8. Dezember 2025 | ✍️ Dominik Bittl</div>
+                        <h3>Gebraucht ins Abenteuer: Der Kaufratgeber</h3>
+                        <p class="article-excerpt">Der Gebrauchtmarkt lockt mit günstigen Preisen, ist aber ein Minenfeld. Wir zeigen dir, wie du Wasserschäden erkennst und verschlissene Fahrwerke entlarvst.</p>
+                        <a href="#" class="read-more" onclick="showArticle(3); return false;">Weiterlesen →</a>
+                    </div>
+                </div>
+
+                <div class="article-card" onclick="showArticle(4)">
+                    <img src="/img/image-2.png" alt="Pickup mit Wohnkabine Fahrwerk" class="article-image">
+                    <div class="article-content">
+                        <div class="article-meta">📅 3. November 2025 | ✍️ Dominik Bittl</div>
+                        <h3>Sicher unterwegs: Gewicht, Fahrwerk & Offroad</h3>
+                        <p class="article-excerpt">Ein hoher Schwerpunkt trifft auf hohes Gewicht und anspruchsvolles Gelände. Damit der Traum nicht im Graben endet, müssen Pickup-Reisende ihre Hausaufgaben machen.</p>
+                        <a href="#" class="read-more" onclick="showArticle(4); return false;">Weiterlesen →</a>
+                    </div>
+                </div>
+
+                <div class="article-card" onclick="showArticle(5)">
+                    <img src="/img/image-1.png" alt="Pickup Camper Aufbautypen" class="article-image">
+                    <div class="article-content">
+                        <div class="article-meta">📅 18. Oktober 2025 | ✍️ Dominik Bittl</div>
+                        <h3>Absetzkabine vs. Festaufbau: Die Gretchenfrage</h3>
+                        <p class="article-excerpt">Soll die Kabine flexibel abnehmbar sein oder fest verbaut werden? Beide Konzepte haben glühende Anhänger. Wir analysieren Technik, Fahrdynamik und Kosten.</p>
+                        <a href="#" class="read-more" onclick="showArticle(5); return false;">Weiterlesen →</a>
+                    </div>
+                </div>
+
+                <div class="article-card" onclick="showArticle(6)">
+                    <img src="/img/image-0.png" alt="Pickup Camper Abenteuer" class="article-image">
+                    <div class="article-content">
+                        <div class="article-meta">📅 22. September 2025 | ✍️ Dominik Bittl</div>
+                        <h3>Freiheit ohne Grenzen: Die Revolution des Reisens</h3>
+                        <p class="article-excerpt">Während Wohnmobile immer größer werden, wächst eine Gegenbewegung: Die Pickup-Wohnkabine. Warum dieses Konzept für Individualisten die Lösung sein kann.</p>
+                        <a href="#" class="read-more" onclick="showArticle(6); return false;">Weiterlesen →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Article 1 Full -->
+        <div id="article-1" class="article-full">
+            <div class="article-full-header">
+                <img src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?w=1600&h=900&fit=crop" alt="Pickup Camper im Schnee" class="article-full-image">
+                <div class="article-full-title-overlay">
+                    <div class="article-meta" style="color: white; margin-bottom: 1rem;">📅 15. Januar 2026 | ✍️ Dominik Bittl</div>
+                    <h2>Wintercamping im Pickup: Der ultimative Guide gegen Kälte und Kondenswasser</h2>
+                </div>
+            </div>
+            <div class="article-full-content">
+                <a href="#" class="back-btn" onclick="showHome(); return false;">← Zurück</a>
+                
+                <p>Draußen herrschen minus 15 Grad, der Wind peitscht Schnee gegen die Kabinenwand, aber drinnen sitzt du im T-Shirt bei wohligen 22 Grad und kochst Kaffee. Wintercamping mit dem Pickup ist magisch – wenn man weiß, was man tut. Doch der kleine Raum birgt physikalische Tücken. Hier erfährst du, wie du deine Kabine winterfest machst, welche Heizung die richtige ist und wie du den Endgegner „Feuchtigkeit" besiegst.</p>
+                
+                <p>Viele Camper motten ihr Fahrzeug im Oktober ein. Ein Fehler! Denn gerade im Winter spielen Pickup-Kabinen ihre Stärken aus. Während Wohnmobile auf verschneiten Passstraßen Ketten aufziehen müssen, schaltest du den 4x4 zu und fährst entspannt bis zum Liftparkplatz oder in den tief verschneiten Wald.</p>
+                
+                <h3>1. Die Gretchenfrage: Hubdach oder Festwand?</h3>
+                <p>Grundsätzlich sind Hardwall-Kabinen (feste Wände aus Sandwich-Platten) im Winter im Vorteil. Sie isolieren hervorragend und halten die Wärme lange. Doch auch Besitzer von Pop-Up-Kabinen müssen nicht frieren.</p>
+                
+                <h3>2. Heizungssysteme: Gas vs. Diesel</h3>
+                <p><strong>Die Gasheizung (z.B. Truma):</strong> Leise, sauber und verbraucht wenig Strom. Der Gasverbrauch ist aber enorm – eine 5kg-Flasche kann bei Dauerfrost in 2-3 Tagen leer sein.</p>
+                
+                <p><strong>Die Dieselstandheizung:</strong> Bedient sich direkt aus dem Fahrzeugtank. Quasi unendlich Brennstoff, aber stromhungrig und lauter.</p>
+                
+                <h3>3. Der Endgegner: Kondenswasser</h3>
+                <p>Zwei Personen atmen, kochen und schwitzen auf 6-8 Quadratmetern. Die 3-Schritte-Strategie: Lüften, Unterlüftung der Matratze und nie die Heizung komplett ausschalten.</p>
+                
+                <h3>4. Strom: Wenn die Sonne streikt</h3>
+                <p>Lithium-Batterien mit Heizmatte und ein Ladebooster sind im Winter unverzichtbar. Eine Stunde Fahrt reicht oft für die nächste Nacht.</p>
+                
+                <h3>5. Das Basisfahrzeug startklar machen</h3>
+                <p>Winterdiesel tanken, Türdichtungen behandeln und Bergegerät griffbereit halten. Auch mit Allrad gibt es Situationen, wo Physik gewinnt.</p>
+                
+                <h3>Fazit</h3>
+                <p>Wenn du morgens die Hecktür öffnest, der Schnee im Sonnenlicht glitzert und du der Erste auf der Piste bist, weißt du: Der Aufwand hat sich gelohnt.</p>
+            </div>
+        </div>
+
+        <!-- Article 2 Full -->
+        <div id="article-2" class="article-full">
+            <div class="article-full-header">
+                <img src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?w=1600&h=900&fit=crop" alt="Pickup Camper Offroad" class="article-full-image">
+                <div class="article-full-title-overlay">
+                    <div class="article-meta" style="color: white; margin-bottom: 1rem;">📅 28. Dezember 2025 | ✍️ Dominik Bittl</div>
+                    <h2>Dorthin, wo andere umkehren: Entdecke die Welt abseits des Asphalts</h2>
+                </div>
+            </div>
+            <div class="article-full-content">
+                <a href="#" class="back-btn" onclick="showHome(); return false;">← Zurück</a>
+                
+                <p>Die schönsten Stellplätze stehen in keinem Campingführer. Sie liegen am Ende eines ausgewaschenen Feldwegs, hinter einer steilen Schotterpassage oder tief in einem Waldstück. Während Fahrer herkömmlicher Wohnmobile beim Schild „Straßenschäden" nervös bremsen, fängt für dich das Abenteuer erst an.</p>
+                
+                <h3>1. Die „Letzte Meile" entscheidet</h3>
+                <p><strong>Die nasse Wiese:</strong> Während der Frontantriebler hilflos durchdreht, legst du entspannt den 4H ein und fährst ohne Flurschaden von der Wiese.</p>
+                
+                <p><strong>Der Strandzugang:</strong> Wo schwere Wohnmobile im Weichsand steckenbleiben, reduzierst du den Reifendruck und findest den perfekten Spot direkt an der Brandung.</p>
+                
+                <h3>2. Alpenpässe und alte Militärstraßen</h3>
+                <p>Die Westalpen sind das Paradies. Alte Militärstraßen wie die Ligurische Grenzkammstraße führen dich auf über 2.000 Meter Höhe. Der Pickup klettert dank Low Range die steilsten Rampen hoch, ohne dass die Kupplung raucht.</p>
+                
+                <h3>3. Stressfreiheit in engen Dörfern</h3>
+                <p>Mit 2,10 Metern Breite passt du durch Engstellen, wo andere kapitulieren. Italienische Bergdörfer und historische Altstädte sind kein Problem mehr.</p>
+                
+                <h3>4. Naturverträglichkeit und Verantwortung</h3>
+                <p>Offroad heißt nicht Querfeldein. Wir bleiben auf bestehenden Wegen und hinterlassen nichts außer Reifenspuren im Staub.</p>
+                
+                <h3>5. Das Gefühl echter Unabhängigkeit</h3>
+                <p>Das Wissen, dass dein Fahrzeug mehr kann, als du ihm abverlangst, entspannt ungemein. Du folgst einer Piste, nur um zu sehen, wohin sie führt. Das ist Pickup-Reisen.</p>
+            </div>
+        </div>
+
+        <!-- Article 3 Full -->
+        <div id="article-3" class="article-full">
+            <div class="article-full-header">
+                <img src="https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=1600&h=900&fit=crop" alt="Pickup Camper Gebrauchtkauf" class="article-full-image">
+                <div class="article-full-title-overlay">
+                    <div class="article-meta" style="color: white; margin-bottom: 1rem;">📅 8. Dezember 2025 | ✍️ Dominik Bittl</div>
+                    <h2>Gebraucht ins Abenteuer: Worauf du beim Kauf achten musst</h2>
+                </div>
+            </div>
+            <div class="article-full-content">
+                <a href="#" class="back-btn" onclick="showHome(); return false;">← Zurück</a>
+                
+                <p>Der Traum vom Pickup-Reisen scheitert oft am Preisschild. Der Gebrauchtmarkt lockt mit günstigen Einstiegspreisen, ist aber ein Minenfeld. Wir zeigen dir, wie du Wasserschäden erkennst, verschlissene Fahrwerke entlarvst und deinen Traum realisierst.</p>
+                
+                <h3>1. Der Pickup: Arbeitstier oder Show-Truck?</h3>
+                <p><strong>Der Rahmen-Check:</strong> Krieche unter das Auto! Flugrost ist normal, aber blättert der Rost schon in Schichten ab? Wurde der Unterbodenschutz frisch übergesprüht, um Rost zu verstecken?</p>
+                
+                <p><strong>Die Anhängerkupplung:</strong> Ein stark abgeschliffener Kugelkopf deutet auf schweren Hängerbetrieb hin. Das stresst das Automatikgetriebe enorm.</p>
+                
+                <h3>2. Die Kabine: Der Feind heißt Wasser</h3>
+                <p>Das wichtigste Kriterium: Dichtigkeit. Kaufe dir ein Feuchtigkeitsmessgerät für 30-50 Euro und gehe alle Wände ab, besonders in den Ecken und um die Fenster.</p>
+                
+                <p><strong>Die Nase:</strong> Riecht es muffig oder übertrieben stark nach Raumspray? Alarmstufe Rot!</p>
+                
+                <p><strong>Der Alkovenboden:</strong> Lege dich ins Bett und taste den Boden ab. Fühlt sich alles fest an oder gibt das Material schwammig nach?</p>
+                
+                <h3>3. Das Fahrwerk: Der versteckte Kostenfaktor</h3>
+                <p>Steht der Pickup hinten deutlich tiefer? Dann sind die Blattfedern durch. Wenn das Fahrzeug über Bodenwellen mehrmals nachschwingt, sind die Stoßdämpfer hinüber.</p>
+                
+                <h3>4. Die Verbindung: Passt das zusammen?</h3>
+                <p>Liegt der Schwerpunkt der Kabine vor oder auf der Hinterachse? Wenn er deutlich dahinter liegt, wird das Fahren gefährlich.</p>
+                
+                <h3>Fazit: Geduld spart Geld</h3>
+                <p>Ein ehrliches Gespann darf Gebrauchsspuren haben. Aber ein verrosteter Rahmen oder eine nasse Kabinenwand sind wirtschaftliche Totalschäden. Suche antizyklisch im November oder Januar.</p>
+            </div>
+        </div>
+
+        <!-- Article 4 Full -->
+        <div id="article-4" class="article-full">
+            <div class="article-full-header">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&h=900&fit=crop" alt="Pickup Truck mit Camper" class="article-full-image">
+                <div class="article-full-title-overlay">
+                    <div class="article-meta" style="color: white; margin-bottom: 1rem;">📅 3. November 2025 | ✍️ Dominik Bittl</div>
+                    <h2>Sicher unterwegs: Der große Ratgeber zu Gewicht, Fahrwerk und Offroad</h2>
+                </div>
+            </div>
+            <div class="article-full-content">
+                <a href="#" class="back-btn" onclick="showHome(); return false;">← Zurück</a>
+                
+                <p>Ein Pickup mit Wohnkabine ist der Inbegriff von Freiheit. Doch physikalisch betrachtet ist er eine Herausforderung: Ein hoher Schwerpunkt trifft auf hohes Gewicht und anspruchsvolles Gelände. Hier ist alles über Zuladung, Fahrwerks-Upgrades und sicheres Fahren.</p>
+                
+                <h3>1. Die Mathematik der Zuladung</h3>
+                <p>Ein Pickup wiegt leer ca. 2.200 kg, das zGG liegt bei 3.200-3.500 kg. Eine Kabine wiegt 600-750 kg, plus Ausstattung, Passagiere, Flüssigkeiten und Gepäck. Schnell bist du bei 3.600 kg – illegal und gefährlich.</p>
+                
+                <p><strong>Profi-Tipp:</strong> Fahre mit leerem Pickup auf eine Waage. Ziehe das vom zGG ab. Das ist dein reales Budget.</p>
+                
+                <h3>2. Das Fahrwerk: Warum Serie nicht reicht</h3>
+                <p><strong>Zusatz-Luftfederung:</strong> Gleicht das Niveau aus, ändert aber nichts an der Traglast. Bei modernen Pickups können Rahmenverstärkungen nötig sein.</p>
+                
+                <p><strong>Komplettfahrwerk:</strong> Verstärkte Blattfedern und hochwertige Dämpfer (OME, Koni, Fox) sind die Profi-Lösung für häufige Offroad-Fahrten.</p>
+                
+                <h3>3. Der Schwerpunkt: Die Angst vor dem Kippen</h3>
+                <p>Alles Schwere muss tief und weit nach vorne. Kurven langsamer anfahren. Spurverbreiterung hilft.</p>
+                
+                <h3>4. Offroad mit Kabine: Die Grenzen</h3>
+                <p>Viele Kabinen ragen über das Heck hinaus – Aufsetzen droht. Seitliche Schrägen sind der Feind Nummer 1. Du bist jetzt 3 Meter hoch – Äste zerkratzen Fenster.</p>
+                
+                <h3>5. Reifen: Der einzige Kontakt zur Straße</h3>
+                <p>AT-Reifen (All Terrain) wie der BF Goodrich KO2 sind der perfekte Kompromiss. Achte zwingend auf den Lastindex!</p>
+                
+                <h3>Fazit</h3>
+                <p>Ein sauber abgestimmter Pickup fährt sich traumhaft sicher. Wer seine Hausaufgaben macht, reist entspannter.</p>
+            </div>
+        </div>
+
+        <!-- Article 5 Full -->
+        <div id="article-5" class="article-full">
+            <div class="article-full-header">
+                <img src="https://images.unsplash.com/photo-1527786356703-4b100091cd2c?w=1600&h=900&fit=crop" alt="Pickup Wohnkabine Typen" class="article-full-image">
+                <div class="article-full-title-overlay">
+                    <div class="article-meta" style="color: white; margin-bottom: 1rem;">📅 18. Oktober 2025 | ✍️ Dominik Bittl</div>
+                    <h2>Absetzkabine vs. Festaufbau: Die Gretchenfrage</h2>
+                </div>
+            </div>
+            <div class="article-full-content">
+                <a href="#" class="back-btn" onclick="showHome(); return false;">← Zurück</a>
+                
+                <p>Wer sich entscheidet, mit dem Pickup zu reisen, steht vor einer fundamentalen Weichenstellung: Soll die Kabine flexibel abnehmbar sein oder fest verbaut werden? Beide Konzepte haben glühende Anhänger und gravierende Vor- und Nachteile.</p>
+                
+                <h3>1. Die Absetzkabine (Slide-in)</h3>
+                <p><strong>Vorteile:</strong> Das Zwei-in-Eins-Prinzip – ein Fahrzeug für alles. Rechtliche Freiheit – gilt als Ladung. Fahrzeugwechsel problemlos möglich.</p>
+                
+                <p><strong>Nachteile:</strong> Hoher Schwerpunkt. Raumverlust durch Doppelwandigkeit.</p>
+                
+                <h3>2. Der Festaufbau (Chassis-Mount)</h3>
+                <p><strong>Vorteile:</strong> Perfekte Raumausnutzung. Bessere Fahrphysik durch tieferen Schwerpunkt. Seitlicher Einstieg möglich.</p>
+                
+                <p><strong>Nachteile:</strong> Pickup und Kabine untrennbar verbunden. Wiederverkauf schwieriger. Umschreibung als Wohnmobil nötig.</p>
+                
+                <h3>3. Der Hybrid: Die Flatbed-Lösung</h3>
+                <p>Die Aluminium-Plattform bietet riesige Staufächer und die Kabine bleibt absetzbar. Teuerste, aber beste Lösung.</p>
+                
+                <h3>Entscheidungshilfe</h3>
+                <p><strong>Alltags-Abenteurer:</strong> Absetzkabine<br>
+                <strong>Weltreisende:</strong> Festaufbau<br>
+                <strong>Technik-Enthusiast:</strong> Flatbed-Lösung</p>
+                
+                <h3>Fazit</h3>
+                <p>Es gibt kein "Besser" oder "Schlechter", nur "Passend" oder "Unpassend". Beide Systeme bringen dich an Orte, von denen Wohnmobile nur träumen.</p>
+            </div>
+        </div>
+
+        <!-- Article 6 Full -->
+        <div id="article-6" class="article-full">
+            <div class="article-full-header">
+                <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1600&h=900&fit=crop" alt="Pickup Camper Freiheit" class="article-full-image">
+                <div class="article-full-title-overlay">
+                    <div class="article-meta" style="color: white; margin-bottom: 1rem;">📅 22. September 2025 | ✍️ Dominik Bittl</div>
+                    <h2>Freiheit ohne Grenzen: Die Revolution des Reisens</h2>
+                </div>
+            </div>
+            <div class="article-full-content">
+                <a href="#" class="back-btn" onclick="showHome(); return false;">← Zurück</a>
+                
+                <p>Während Wohnmobile immer größer und luxuriöser werden, wächst eine Gegenbewegung: Die Pickup-Wohnkabine. Warum dieses Konzept für Individualisten und Abenteurer die eierlegende Wollmilchsau sein kann.</p>
+                
+                <p>Stell dir vor, du stehst an einer Gabelung. Links führt eine Straße zum vollen Campingplatz. Rechts zweigt ein Schotterpfad in die Seealpen ab. Mit einem Wohnmobil ist die Entscheidung gefallen. Im Pickup fängt der Urlaub rechts erst richtig an.</p>
+                
+                <h3>Das Konzept: Modularität als Schlüssel</h3>
+                <p>Im Gegensatz zum Wohnmobil setzt das Pickup-Konzept auf Modularität. Die Wohnkabine wird auf der Ladefläche verankert und gilt rechtlich als Ladung. Diese Trennung bietet Doppelnutzung.</p>
+                
+                <p>Im Urlaub: Expeditionsmobil. Im Alltag: Du stellst die Kabine ab und hast einen PKW.</p>
+                
+                <h3>Fahrdynamik und Offroad-Performance</h3>
+                <p>Pickups basieren auf Leiterrahmen-Chassis mit starrer Hinterachse – LKW-Technik im Kleinformat. Der wahre Trumpf: Allrad, Low Range und Differentialsperren sind Standard.</p>
+                
+                <p>Allerdings: Der Schwerpunkt wandert nach oben. Ein Fahrwerks-Upgrade ist fast unumgänglich.</p>
+                
+                <h3>Wohnkomfort: Raumwunder auf wenigen Quadratmetern</h3>
+                <p>Moderne Kabinen sind Meisterwerke der Raumausnutzung. Alkoven über dem Fahrerhaus, clevere Sitzgruppe und Autarkie-Ausstattung mit großen Tanks, Solar und Lithium-Batterien.</p>
+                
+                <h3>Für wen lohnt sich der Umstieg?</h3>
+                <p>Das System lohnt sich, wenn du Allrad-Ziele ansteuerst (Island, Alpenpässe, Wüsten), im Alltag ein Zugfahrzeug brauchst und Wert auf Langlebigkeit legst.</p>
+                
+                <p>Weniger geeignet, wenn du täglich Autobahn fährst oder den Durchgang vom Fahrerhaus brauchst.</p>
+                
+                <h3>Fazit: Die Freiheit, "Ja" zu sagen</h3>
+                <p>Die Entscheidung für einen Pickup mit Kabine ist eine Entscheidung für Möglichkeiten. Es ist die Freiheit, "Ja" zu sagen zum verschneiten Waldweg, zum sandigen Strand oder der matschigen Festival-Wiese.</p>
+            </div>
+        </div>
+
+        <!-- Impressum -->
+        <div id="impressum-view" class="impressum">
+            <a href="#" class="back-btn" onclick="showHome(); return false;">← Zurück zur Startseite</a>
+            <h2>Impressum</h2>
+            
+            <h3>Angaben gemäß § 5 TMG</h3>
+            <p>
+                Dominik Bittl<br>
+                Die Pickup Camper<br>
+                Steinmetzanlage 16<br>
+                90431 Nürnberg<br>
+                Deutschland
+            </p>
+            
+            <h3>Kontakt</h3>
+            <p>
+                E-Mail: dominik.bittl@gmail.com<br>
+                Telefon: +49-152-56325272
+            </p>
+            
+            <h3>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
+            <p>
+                Dominik Bittl<br>
+                Steinmetzanlage 16<br>
+                90431 Nürnberg
+            </p>
+            
+            <h3>Haftungsausschluss</h3>
+            <p><strong>Haftung für Inhalte:</strong> Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+            
+            <p><strong>Haftung für Links:</strong> Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+            
+            <p><strong>Urheberrecht:</strong> Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+            
+            <h3>Datenschutz</h3>
+            <p>Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben.</p>
+            
+            <h3>Hinweis zur Streitbeilegung</h3>
+            <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit. Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Die Pickup Camper - Alle Rechte vorbehalten</p>
+            <p><a href="#" onclick="showImpressum(); return false;">Impressum</a> | <a href="#" onclick="showImpressum(); return false;">Datenschutz</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function showHome() {
+            document.getElementById('home-view').style.display = 'block';
+            document.querySelectorAll('.article-full').forEach(el => el.classList.remove('active'));
+            document.querySelector('.impressum').classList.remove('active');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function showArticle(num) {
+            document.getElementById('home-view').style.display = 'none';
+            document.querySelectorAll('.article-full').forEach(el => el.classList.remove('active'));
+            document.querySelector('.impressum').classList.remove('active');
+            document.getElementById('article-' + num).classList.add('active');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function showImpressum() {
+            document.getElementById('home-view').style.display = 'none';
+            document.querySelectorAll('.article-full').forEach(el => el.classList.remove('active'));
+            document.querySelector('.impressum').classList.add('active');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
+</body>
+</html>
